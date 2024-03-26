@@ -1,0 +1,39 @@
+type User{
+    userId: ID!,
+    primeiroNome: String,
+    sobreNome: String,
+    address: Address
+}
+
+type Address{
+    Casa_Id: ID!,
+    numero_casa: Int,
+    rua: String,
+    cidade: String,
+    CEP: String,
+    pais: String
+
+}
+
+type Query{
+    getUserById(userId: ID!):User
+    getAllUsers:[User]
+}
+
+type Mutation{
+    addNewUser(user: UserInput):User
+}
+
+input UserInput{
+    primeiroNome: String,
+    sobreNome: String,
+    numero_casa: Int,
+    rua: String,
+    cidade: String,
+    CEP: String,
+    pais: String
+}
+
+type Inscrever{
+    greetNewUsers: String
+}
