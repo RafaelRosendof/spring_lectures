@@ -1,6 +1,7 @@
 package com.crudEscola.escola;
 
 import java.util.Scanner;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -66,6 +67,9 @@ public class EscolaApplication {
 				else if(option.equals("q")){
 					break;
 				}
+				else if(option.equals("5")){
+					retornaSobrenome(usuarioDAO);
+				}
 				else{
 					System.out.println("AINDA EM CONSTRUÇÃO !!!!!");
 				}
@@ -73,28 +77,32 @@ public class EscolaApplication {
 		};
 	}
 	/*
-	 * READ foi?
-	 * CREATE aqui foi 
-	 * UPDATE  aqui acho que foi 
-	 * DELETE aqui eu acho que já foi 
-	 * BUSCAR TODOS(POR CATEGORIA TBM) 
+	 * READ  DONE
+	 * CREATE  DONE
+	 * UPDATE   DONE
+	 * DELETE  DONE
+	 * BUSCAR feito por nome e por ID 
 	 *  
 	 */
 
+	 private void retornaSobrenome(UsuarioDAO usuarioDAO){
+		System.out.println("Digite o sobrenome que queres pesquisar: ");
+		String nome = leitor.nextLine();
+
+		List<Usuario> temp = usuarioDAO.findBySobrenome(nome);
+
+		for(Usuario tempp : temp){
+			System.out.println(tempp);
+		}
+	 }
+
 	 private void readUser(UsuarioDAO usuarioDAO){
-		System.out.println("Lendo o objeto usuário: ");
-		Usuario temp = new Usuario("Aluno" , "Rafael" , "Rosendo" , "figas@gmail.com");
+		System.out.println("Qual usuário o sr. quer fazer a consulta: ");
+		int idUser = leitor.nextInt();
 
-		System.out.println("Salvando o usuário ");
-		usuarioDAO.save(temp);
+		Usuario temp = usuarioDAO.findById(idUser);
 
-		int theID = temp.getId();
-		System.out.println("Achou a id " + theID);
-
-		Usuario mUsuario = usuarioDAO.findById(theID);
-		//return studentDAO;
-		//printando 
-		System.out.println("Aluno = " + mUsuario);
+		System.out.println("USUÁRIO:    " + temp);
 	 }
 
 	private void createMultipleUsers(UsuarioDAO usuarioDAO){
@@ -129,7 +137,18 @@ public class EscolaApplication {
 		System.out.println("Quem o sr. quer atualizar ?");
 		int option = leitor.nextInt();
 		leitor.nextLine();
-		Usuario mUsuario = usuarioDAO.findById(option);
+		Usuario temp = usuarioDAO.findById(option);
+		System.out.println("Getting student with id: " + temp);
+
+		System.out.println("ALUNO = "+ temp.getId());
+		
+		Usuario mUsuario = new Usuario();
+		mUsuario.setId(temp.getId());
+		mUsuario.setEmail(temp.getEmail());
+		mUsuario.setPrimeiroNome(temp.getPrimeiroNome());
+		mUsuario.setSobrenome(temp.getSobrenome());
+		mUsuario.setTypeOfUser(temp.getTypeOfUser());
+
 
 		String chave = "p";
 
@@ -167,6 +186,7 @@ public class EscolaApplication {
 			}
 		}
 
+		
 
 	 }
 
@@ -174,7 +194,7 @@ public class EscolaApplication {
 		System.out.println("Digite quantos usuários devem ser removidos: ");
 		int quantos = leitor.nextInt();
 
-		while(quantos < 0){
+		while(quantos > 0){
 			System.out.printf("Digite o ID do usuário que queres deletar: ");
 			int id = leitor.nextInt();
 

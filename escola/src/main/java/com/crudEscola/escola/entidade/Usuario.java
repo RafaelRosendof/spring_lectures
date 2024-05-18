@@ -34,7 +34,9 @@ public class Usuario{
      @Column(name="email")
      private String email;
 
-     public Usuario(){} //construtor default necessário 
+     public Usuario(){
+      
+     } //construtor default necessário 
 
      public Usuario(String typeOfUser , String primeiroNome , String sobrenome, String email){
         this.typeOfUser = typeOfUser;
