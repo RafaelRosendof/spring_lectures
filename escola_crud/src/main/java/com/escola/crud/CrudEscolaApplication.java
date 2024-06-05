@@ -17,5 +17,6 @@ public class CrudEscolaApplication {
 			System.out.println("FALA FIGAS");
 		};
 	}
+  
 
 }

@@ -43,6 +43,7 @@ public class EscolaApplication {
 				 * 
 				 */
 
+        
 
 				String option;
 				System.out.printf("\n\n Digite a opção que deseja:");
