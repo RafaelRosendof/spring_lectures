@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 import com.trabalho.pix.entity.ClienteEntity;
 
 public interface ClienteDAO{
-    BigDecimal enviarDinheiro(String conta);
+    BigDecimal enviarDinheiro(String conta); //chama a transação? 
     BigDecimal consultarSaldo(); 
 }
