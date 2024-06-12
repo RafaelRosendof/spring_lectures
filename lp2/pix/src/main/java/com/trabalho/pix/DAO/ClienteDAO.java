@@ -5,8 +5,18 @@ package com.trabalho.pix.DAO;
 import java.math.BigDecimal;
 
 import com.trabalho.pix.entity.ClienteEntity;
+import com.trabalho.pix.DAO.TransactionDAO;
 
 public interface ClienteDAO{
-    BigDecimal enviarDinheiro(String conta); //chama a transação? 
-    BigDecimal consultarSaldo(); 
+    //rever esse método aqui tbm 
+    
+    //void transferir(String contaRemetente ,String contaRecebedor, BigDecimal valor); //chama a transação? 
+    BigDecimal consultarSaldo(ClienteEntity cliente); //tbm não precisa 
+
+    ClienteEntity findConta(String conta); 
+
+   // void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor);
+
+    void updateCliente(ClienteEntity cliente);
 }
+//REVISAR
