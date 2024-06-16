@@ -29,6 +29,11 @@ public class FuncionarioServiceImpl implements FuncionarioService{
         return funcionarioDAO.findById(id);
     }
 
+
+    @Override
+    public FuncionarioEntity findFun(Integer id){
+        return funcionarioDAO.findFun(id);
+    }
     @Override
     public List<ClienteEntity> findAll(){
         return funcionarioDAO.findAll();
@@ -59,23 +64,5 @@ public class FuncionarioServiceImpl implements FuncionarioService{
         funcionarioDAO.deleteFuncionario(id);
     }
 
-    //SEGUE OS MÉTODOS TODO()!
 }
 
-/*
- *     void criarCliente(ClienteEntity cliente); d
-
-    ClienteEntity findById(Integer id); d
-
-    List<ClienteEntity> findAll(); d
-
-    void updateCliente(ClienteEntity cliente); d 
-
-    void deleteCliente(Integer id); d 
-
-    void criarFuncionario(FuncionarioEntity funcionario); d
-
-    void updateFuncionario(FuncionarioEntity funcionario); d
-
-    void deleteFuncionario(Integer id);
- */

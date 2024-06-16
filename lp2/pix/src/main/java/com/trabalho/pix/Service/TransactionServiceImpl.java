@@ -4,26 +4,28 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.trabalho.pix.DAO.ClienteDAO;
 import com.trabalho.pix.entity.ClienteEntity;
 import com.trabalho.pix.entity.TransactionEntity;
+import com.trabalho.pix.DAO.TransactionDAO;
 
 import jakarta.persistence.EntityManager;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
-    //todo()! CHAMAR O UPDATE DO CLIENTE PARA ATUALIZAR OS VALORES E PARA PERSISTIR A TRANSAÇÃO feito
-    private final EntityManager entityManager;
     private final ClienteDAO clienteDAO;
+    private final TransactionDAO transactionDAO;
 
     @Autowired
-    public TransactionServiceImpl(EntityManager entityManager , ClienteDAO clienteDAO){
-        this.entityManager = entityManager;
+    public TransactionServiceImpl(TransactionDAO transactionDAO , ClienteDAO clienteDAO){
+        this.transactionDAO = transactionDAO;
         this.clienteDAO = clienteDAO;
     }
 
-    public void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor){ //atualizar as contas e não clientes 
+    public void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor){ //atualizar as contas e não clientes  (verificar o que é isso)
 
         ClienteEntity remetente = clienteDAO.findConta(contaRemetente);
         ClienteEntity recebedor = clienteDAO.findConta(contaRecebedor);
@@ -39,9 +41,9 @@ public class TransactionServiceImpl implements TransactionService {
         clienteDAO.updateCliente(remetente);
         clienteDAO.updateCliente(recebedor);
 
-        //REGISTRANDO A TRANSFERENCIA
+        //REGISTRANDO A TRANSFERENCIA chamar metodo do DAO para salvar 
         TransactionEntity transferenciaEntity = new TransactionEntity(remetente, recebedor, valor, LocalDateTime.now());
-        entityManager.persist(transferenciaEntity);
+        transactionDAO.registrarTransacao(transferenciaEntity);
 
     }
 }

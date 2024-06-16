@@ -13,26 +13,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ClienteServiceImpl implements ClienteService{
 
     private final ClienteDAO clienteDAO;
-    private final TransactionService transactionService;
+    //private final TransactionService transactionService;
 
     @Autowired
-    public ClienteServiceImpl(ClienteDAO clienteDAO, TransactionService transactionService) {
+    public ClienteServiceImpl(ClienteDAO clienteDAO) {
         this.clienteDAO = clienteDAO;
-        this.transactionService = transactionService;
+//        this.transactionService = transactionService;
     }
 
-    //todo métodos kkkkkkk
-
-    @Override
-    @Transactional
-    public void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor){
-        transactionService.transferir(contaRemetente, contaRecebedor, valor);
-    }
 
     @Override
     public BigDecimal consultarSaldo(String conta){
         ClienteEntity cliente = clienteDAO.findConta(conta);
         return clienteDAO.consultarSaldo(cliente);
+    }
+
+    @Override
+    public String meusDados(String conta){
+       return clienteDAO.meusDados(conta); 
     }
 
 }

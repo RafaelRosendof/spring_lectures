@@ -8,6 +8,8 @@ public interface FuncionarioService{
 
     ClienteEntity findById(Integer id);
 
+    FuncionarioEntity findFun(Integer id);
+
     List<ClienteEntity> findAll();
 
     void updateCliente(ClienteEntity cliente);

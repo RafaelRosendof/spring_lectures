@@ -8,15 +8,13 @@ import com.trabalho.pix.entity.ClienteEntity;
 import com.trabalho.pix.DAO.TransactionDAO;
 
 public interface ClienteDAO{
-    //rever esse método aqui tbm 
     
-    //void transferir(String contaRemetente ,String contaRecebedor, BigDecimal valor); //chama a transação? 
-    BigDecimal consultarSaldo(ClienteEntity cliente); //tbm não precisa 
+    BigDecimal consultarSaldo(ClienteEntity cliente); 
 
     ClienteEntity findConta(String conta); 
 
-   // void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor);
+ 
+    String meusDados(String conta);
 
     void updateCliente(ClienteEntity cliente);
 }
-//REVISAR

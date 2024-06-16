@@ -1,5 +1,3 @@
-//criar as assinaturas dos métodos e chamar do service as transações e saldos a view não pode se comunicar com o dao diretamente 
-
 package com.trabalho.pix.DAO;
 
 import java.util.List;
@@ -12,6 +10,8 @@ public interface FuncionarioDAO {
     void criarCliente(ClienteEntity theCliente); //criar cliente 
 
     ClienteEntity findById(Integer id); //achar cliente 
+
+    FuncionarioEntity findFun(Integer id);
 
     List<ClienteEntity> findAll(); //buscar todos os clientes 
 

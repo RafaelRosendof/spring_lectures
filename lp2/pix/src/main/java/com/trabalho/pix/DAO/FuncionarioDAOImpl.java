@@ -35,6 +35,11 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
    }
 
    @Override
+   public FuncionarioEntity findFun(Integer id){
+      return entityManager.find(FuncionarioEntity.class , id);
+   }
+
+   @Override
    public List<ClienteEntity> findAll(){
       TypedQuery<ClienteEntity> aQuery = entityManager.createQuery("FROM Cliente", ClienteEntity.class); //verificar se é esse banco mesmo 
 
@@ -76,20 +81,3 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 }
 
-/*
- *     void criarCliente(ClienteEntity theCliente); //criar cliente feito
-
-    ClienteEntity findById(Integer id); //achar cliente feito 
-
-    List<ClienteEntity> findAll(); //buscar todos os clientes  feito
-
-    void updateCliente(ClienteEntity theCliente); //atualizar cliente  feito
-
-    void deleteCliente(Integer id); //deletar cliente ou funcionario feito
-
-    void criaFuncionario(FuncionarioEntity theFuncionario); //criar funcionario
-
-    void updateFuncionario(FuncionarioEntity funcionario); // Atualizar funcionário 
-
-    void deleteFuncionario(Integer id); // Deletar funcionário
- */

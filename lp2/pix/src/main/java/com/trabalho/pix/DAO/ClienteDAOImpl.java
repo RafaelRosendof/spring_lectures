@@ -11,15 +11,14 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 public class ClienteDAOImpl implements ClienteDAO{
-   //chamar transaction aqui?  
+    
 
-  // private TransactionDAO transactionDAO; //rever isso aqui 
+  
    private EntityManager entityManager;
 
    @Autowired
    public ClienteDAOImpl(EntityManager entityManager){
       this.entityManager = entityManager;
-    //  this.transactionDAO = transactionDAO;
    }
 
    @Override
@@ -34,22 +33,28 @@ public class ClienteDAOImpl implements ClienteDAO{
       return cliente.getSaldo(); //fazer isso na view
    }
 
-//TRANSFERENCIA FOI MOVIDO PARA SERVICE TRANSFERENCIA
 
    @Override
    @Transactional
    public void updateCliente(ClienteEntity cliente){
       entityManager.persist(cliente);
    }
-/* 
-   @Override
-   public void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor){
-      ClienteEntity remetente = findConta(contaRemetente);
-      ClienteEntity recebedor = findConta(contaRecebedor);
 
-      transactionDAO.transferir(remetente, recebedor, valor);
-      //TransactioServ
+   @Override
+   public String meusDados(String conta){
+      //ClienteEntity clienteEntity = entityManager.find(ClienteEntity.class , conta);
+      //return clienteEntity.toString();
+      TypedQuery<ClienteEntity> query = entityManager.createQuery( "SELECT c FROM Cliente c WHERE c.conta = :conta", ClienteEntity.class);
+      query.setParameter("conta", conta);
+
+      ClienteEntity clienteEntity;
+      try{
+         clienteEntity = query.getSingleResult();
+      }catch( Exception e){
+         return "Conta não encontrada";
+      }
+
+      return clienteEntity.toString();
    }
-*/
-   }
-//REVISAR 
+
+}

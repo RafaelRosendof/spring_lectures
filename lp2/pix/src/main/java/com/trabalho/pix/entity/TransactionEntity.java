@@ -82,5 +82,4 @@ public class TransactionEntity{
     }
 
 
-//    public void setPagador(String Pagador)
 }
