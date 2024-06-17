@@ -11,11 +11,12 @@ import com.trabalho.pix.entity.ClienteEntity;
 import com.trabalho.pix.entity.FuncionarioEntity;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 @Repository
 public class FuncionarioDAOImpl implements FuncionarioDAO {
-   
+  @PersistenceContext 
    private EntityManager entityManager;
 
    @Autowired

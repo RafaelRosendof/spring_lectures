@@ -33,27 +33,50 @@ public class PixApplication {
 
 		return runner ->{
 
-			FuncionarioEntity fun1 = new FuncionarioEntity("Rafael", "Rosendo", "1905", "471560", "Gerente"); //acho que vai dar merda na categoria
+			//FuncionarioEntity fun1 = new FuncionarioEntity("Rafael", "Rosendo", "1905", "471560", "Gerente"); //acho que vai dar merda na categoria
 			//final FuncionarioService funcionarioService;
-			funcionarioService.criarFuncionario(fun1);
+			//funcionarioService.criarFuncionario(fun1);
 
             // Criando algumas amostras de clientes
-            ClienteEntity cli1 = new ClienteEntity("Jadna", "Cristina", "amor", "rafael", BigDecimal.valueOf(10000) , "190504-x");
-            ClienteEntity cli2 = new ClienteEntity("Rafael", "Faustino", "jadna", "jadna", BigDecimal.valueOf(200) , "471560");
+            //ClienteEntity cli1 = new ClienteEntity("Jadna", "Cristina", "amor", "rafael", BigDecimal.valueOf(10000) , "190504-x");
+            //ClienteEntity cli2 = new ClienteEntity("Rafael", "Faustino", "jadna", "jadna", BigDecimal.valueOf(200) , "471560");
 
-			funcionarioService.criarCliente(cli1);
-			funcionarioService.criarCliente(cli2);
+			//funcionarioService.criarCliente(cli1);
+			//funcionarioService.criarCliente(cli2);
 
 			//Antes de rodar, faça a criação de 3 clientes dois funcionarios e um gerente 
 			System.out.println("Bem vindo ao menu do banco");
 
-			
-			System.out.println("\n Por favor insira o seu login: ");
-			String login = leitor.nextLine();
+			System.out.println("Digite (1) para cliente ou (2) para funcionário: ");			
+			int opt = leitor.nextInt();
+			leitor.nextLine();
 
-			System.out.println("\n Agora insira a senha: ");
-			String senha = leitor.nextLine();
+			if(opt == 1){
 
+				System.out.println("\n Por favor insira o seu login: ");
+				String login = leitor.nextLine();
+
+				System.out.println("\n Agora insira a senha: ");
+				String senha = leitor.nextLine();
+				FuncionarioEntity funcionario = autenticaService.funcionarioFind(login, senha);
+				
+				funcionarioView.menuFuncionario();
+
+			}else{
+				System.out.println("Bem vindo cliente ");
+				System.out.println("\n Por favor insira o seu login: ");
+				String login = leitor.nextLine();
+
+				System.out.println("\n Agora insira a senha: ");
+				String senha = leitor.nextLine();
+
+				ClienteEntity cliente = autenticaService.clienteFind(login, senha);
+				clienteView.menuCliente();
+			}
+
+
+			/* 
+			//TODO ta dando merda aqui 
             FuncionarioEntity funcionario = autenticaService.funcionarioFind(login, senha);
             if (funcionario != null) {
                 System.out.println("Bem-vindo, Funcionário.");
@@ -70,6 +93,7 @@ public class PixApplication {
 
             System.out.println("Credenciais inválidas. Tente novamente.");
 
+			/*/
 		};
 	}
 

@@ -3,17 +3,20 @@ package com.trabalho.pix.DAO;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.trabalho.pix.entity.ClienteEntity;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
+@Repository
 public class ClienteDAOImpl implements ClienteDAO{
     
 
-  
+  @PersistenceContext
    private EntityManager entityManager;
 
    @Autowired
