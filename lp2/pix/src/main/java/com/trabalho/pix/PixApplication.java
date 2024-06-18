@@ -51,14 +51,15 @@ public class PixApplication {
 			int opt = leitor.nextInt();
 			leitor.nextLine();
 
-			if(opt == 1){
+			if(opt == 2){
 
 				System.out.println("\n Por favor insira o seu login: ");
 				String login = leitor.nextLine();
 
 				System.out.println("\n Agora insira a senha: ");
 				String senha = leitor.nextLine();
-				FuncionarioEntity funcionario = autenticaService.funcionarioFind(login, senha);
+				//FuncionarioEntity funcionario = autenticaService.funcionarioFind(login, senha);
+				FuncionarioEntity funcionarioEntity = autenticaService.funcionarioFind(login, senha);
 				
 				funcionarioView.menuFuncionario();
 
@@ -75,25 +76,6 @@ public class PixApplication {
 			}
 
 
-			/* 
-			//TODO ta dando merda aqui 
-            FuncionarioEntity funcionario = autenticaService.funcionarioFind(login, senha);
-            if (funcionario != null) {
-                System.out.println("Bem-vindo, Funcionário.");
-                funcionarioView.menuFuncionario();
-                return;
-            }
-
-            ClienteEntity cliente = autenticaService.clienteFind(login, senha);
-            if (cliente != null) {
-                System.out.println("Bem-vindo, Cliente.");
-                clienteView.menuCliente();
-                return;
-            }
-
-            System.out.println("Credenciais inválidas. Tente novamente.");
-
-			/*/
 		};
 	}
 

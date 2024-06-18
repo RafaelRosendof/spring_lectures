@@ -44,7 +44,7 @@ public class ClienteView{
             break;
 
         case 3:
-            System.out.println("Saind....."); 
+            System.out.println("Saind....."); //todo ajeitar isso 
         default:
         System.out.println("Opção inválida, tente novamente ou mais tarde");
             break;

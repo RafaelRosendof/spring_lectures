@@ -18,7 +18,8 @@ import jakarta.persistence.TypedQuery;
 public class FuncionarioDAOImpl implements FuncionarioDAO {
   @PersistenceContext 
    private EntityManager entityManager;
-
+///home/rafael/spring_lectures/lp2/pix/src/main/java/com/trabalho/pix/entity/FuncionarioEntity.java
+///home/rafael/spring_lectures/lp2/pix/src/main/java/com/trabalho/pix/entity/ClienteEntity.java
    @Autowired
    public FuncionarioDAOImpl(EntityManager entityManager){
       this.entityManager = entityManager;
@@ -42,7 +43,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
    @Override
    public List<ClienteEntity> findAll(){
-      TypedQuery<ClienteEntity> aQuery = entityManager.createQuery("FROM Cliente", ClienteEntity.class); //verificar se é esse banco mesmo 
+      TypedQuery<ClienteEntity> aQuery = entityManager.createQuery("FROM ClienteEntity", ClienteEntity.class); //verificar se é esse banco mesmo 
 
       return aQuery.getResultList();
    }

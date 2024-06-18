@@ -17,6 +17,7 @@ import java.util.Scanner;
 import com.trabalho.pix.Service.ClienteService;
 import com.trabalho.pix.Service.FuncionarioService;
 import com.trabalho.pix.entity.ClienteEntity;
+import com.trabalho.pix.entity.FuncionarioEntity;
 @Component
 public class FuncionarioView{
     private final ClienteService clienteService;

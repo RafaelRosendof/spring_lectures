@@ -23,15 +23,17 @@ public class ClienteDAOImpl implements ClienteDAO{
    public ClienteDAOImpl(EntityManager entityManager){
       this.entityManager = entityManager;
    }
-
+///home/rafael/spring_lectures/lp2/pix/src/main/java/com/trabalho/pix/entity/ClienteEntity
    @Override
+   @Transactional
    public ClienteEntity findConta(String conta){
-      TypedQuery<ClienteEntity> aQuery = entityManager.createQuery("FROM CLiente WHERE conta = :conta", ClienteEntity.class);
+      TypedQuery<ClienteEntity> aQuery = entityManager.createQuery("FROM ClienteEntity WHERE conta = :conta", ClienteEntity.class);
       aQuery.setParameter("conta", conta);
       return aQuery.getSingleResult();
    }
 
    @Override
+   @Transactional
    public BigDecimal consultarSaldo(ClienteEntity cliente){
       return cliente.getSaldo(); //fazer isso na view
    }
@@ -47,7 +49,7 @@ public class ClienteDAOImpl implements ClienteDAO{
    public String meusDados(String conta){
       //ClienteEntity clienteEntity = entityManager.find(ClienteEntity.class , conta);
       //return clienteEntity.toString();
-      TypedQuery<ClienteEntity> query = entityManager.createQuery( "SELECT c FROM Cliente c WHERE c.conta = :conta", ClienteEntity.class);
+      TypedQuery<ClienteEntity> query = entityManager.createQuery( "SELECT c FROM ClienteEntity c WHERE c.conta = :conta", ClienteEntity.class);
       query.setParameter("conta", conta);
 
       ClienteEntity clienteEntity;
