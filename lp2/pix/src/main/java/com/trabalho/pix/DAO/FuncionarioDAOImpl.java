@@ -37,6 +37,12 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
    }
 
    @Override
+   @Transactional
+   public ClienteEntity findByConta(String conta){
+      return entityManager.find(ClienteEntity.class, conta);
+   }
+
+   @Override
    public FuncionarioEntity findFun(Integer id){
       return entityManager.find(FuncionarioEntity.class , id);
    }

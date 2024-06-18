@@ -23,7 +23,7 @@ public class AutenticaDAO {
     }
     @Transactional
     public FuncionarioEntity findFuncionario(String login , String senha){
-        TypedQuery<FuncionarioEntity> aQuery = entityManager.createQuery("SELECT f FROM Funcionario f WHERE f.login = :login AND f.senha = :senha", FuncionarioEntity.class);
+        TypedQuery<FuncionarioEntity> aQuery = entityManager.createQuery("SELECT f FROM FuncionarioEntity f WHERE f.login = :login AND f.senha = :senha", FuncionarioEntity.class);
         aQuery.setParameter("login", login);
         aQuery.setParameter("senha", senha);
 
@@ -32,7 +32,7 @@ public class AutenticaDAO {
 
     @Transactional
     public FuncionarioEntity findGerente(String login , String senha){
-        TypedQuery<FuncionarioEntity> aQuery = entityManager.createQuery("SELECT f FROM Funcionario f WHERE f.login = :login AND f.senha = :senha", FuncionarioEntity.class);
+        TypedQuery<FuncionarioEntity> aQuery = entityManager.createQuery("SELECT f FROM FuncionarioEntity f WHERE f.login = :login AND f.senha = :senha", FuncionarioEntity.class);
         aQuery.setParameter("login", login);
         aQuery.setParameter("senha", senha);
 

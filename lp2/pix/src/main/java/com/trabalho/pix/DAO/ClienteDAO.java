@@ -17,4 +17,6 @@ public interface ClienteDAO{
     String meusDados(String conta);
 
     void updateCliente(ClienteEntity cliente);
+
+    ClienteEntity findByConta(String conta);
 }

@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.trabalho.pix.DAO.ClienteDAO;
 import com.trabalho.pix.entity.ClienteEntity;
 import com.trabalho.pix.entity.TransactionEntity;
+
+import jakarta.transaction.Transactional;
+
 import com.trabalho.pix.DAO.TransactionDAO;
 
-import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManager;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -24,7 +27,8 @@ public class TransactionServiceImpl implements TransactionService {
         this.transactionDAO = transactionDAO;
         this.clienteDAO = clienteDAO;
     }
-
+    @Override
+    @Transactional
     public void transferir(String contaRemetente , String contaRecebedor , BigDecimal valor){ //atualizar as contas e não clientes  (verificar o que é isso)
 
         ClienteEntity remetente = clienteDAO.findConta(contaRemetente);

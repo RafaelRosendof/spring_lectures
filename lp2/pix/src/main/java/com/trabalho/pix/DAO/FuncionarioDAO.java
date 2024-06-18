@@ -24,4 +24,6 @@ public interface FuncionarioDAO {
     void updateFuncionario(FuncionarioEntity funcionario); // Atualizar funcionário 
 
     void deleteFuncionario(Integer id); // Deletar funcionário
+
+    ClienteEntity findByConta(String conta);
 }

@@ -23,8 +23,8 @@ public class ClienteView{
 
     public void menuCliente(){
     Scanner leitor = new Scanner(System.in);
-    
-    while (true) {
+    boolean exit = false;
+    while (!exit) {
        System.out.println("Menu Cliente: ");
        System.out.println("1. Consultar Saldo"); 
        System.out.println("2. Transferir Dinheiro"); 
@@ -45,6 +45,9 @@ public class ClienteView{
 
         case 3:
             System.out.println("Saind....."); //todo ajeitar isso 
+            exit = true;
+            break;
+            
         default:
         System.out.println("Opção inválida, tente novamente ou mais tarde");
             break;

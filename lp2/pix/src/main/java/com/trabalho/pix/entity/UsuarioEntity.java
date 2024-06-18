@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
+//Classe abstrata entity id
 public abstract class UsuarioEntity {
    /*
    definir campos

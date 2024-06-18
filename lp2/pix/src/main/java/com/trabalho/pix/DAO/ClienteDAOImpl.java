@@ -32,6 +32,13 @@ public class ClienteDAOImpl implements ClienteDAO{
       return aQuery.getSingleResult();
    }
 
+
+   @Override
+   @Transactional
+   public ClienteEntity findByConta(String conta){
+      return entityManager.find(ClienteEntity.class, conta);
+   }
+
    @Override
    @Transactional
    public BigDecimal consultarSaldo(ClienteEntity cliente){
@@ -42,7 +49,7 @@ public class ClienteDAOImpl implements ClienteDAO{
    @Override
    @Transactional
    public void updateCliente(ClienteEntity cliente){
-      entityManager.persist(cliente);
+      entityManager.merge(cliente);
    }
 
    @Override

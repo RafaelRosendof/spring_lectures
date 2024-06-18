@@ -33,16 +33,16 @@ public class PixApplication {
 
 		return runner ->{
 
-			//FuncionarioEntity fun1 = new FuncionarioEntity("Rafael", "Rosendo", "1905", "471560", "Gerente"); //acho que vai dar merda na categoria
-			//final FuncionarioService funcionarioService;
-			//funcionarioService.criarFuncionario(fun1);
+//			FuncionarioEntity fun1 = new FuncionarioEntity("Rafael", "Rosendo", "1905", "471560", "Gerente"); //acho que vai dar merda na categoria
+			// FuncionarioService funcionarioService;
+		//	funcionarioService.criarFuncionario(fun1);
 
             // Criando algumas amostras de clientes
-            //ClienteEntity cli1 = new ClienteEntity("Jadna", "Cristina", "amor", "rafael", BigDecimal.valueOf(10000) , "190504-x");
-            //ClienteEntity cli2 = new ClienteEntity("Rafael", "Faustino", "jadna", "jadna", BigDecimal.valueOf(200) , "471560");
+            //ClienteEntity cli1 = new ClienteEntity("Jadnaaa", "Cristinaaaa", "amorr", "rafaell", BigDecimal.valueOf(10000) , "190504");
+            //ClienteEntity cli2 = new ClienteEntity("Rafaelllll", "Faustinoooo", "jadnaa", "jadnaa", BigDecimal.valueOf(200) , "47156");
 
-			//funcionarioService.criarCliente(cli1);
-			//funcionarioService.criarCliente(cli2);
+//			funcionarioService.criarCliente(cli1);
+		//	funcionarioService.criarCliente(cli2);
 
 			//Antes de rodar, faça a criação de 3 clientes dois funcionarios e um gerente 
 			System.out.println("Bem vindo ao menu do banco");
