@@ -31,13 +31,14 @@ public class FuncionarioView{
 
     Scanner leitor = new Scanner(System.in);
     public void menuFuncionario() {
-        
-        while (true) {
+        boolean figas = false;
+        while (!figas) {
             System.out.println("Menu Funcionário:");
             System.out.println("1. Criar Cliente");
-            System.out.println("2. Consultar Saldo");
-            System.out.println("3. Transferir");
-            System.out.println("4. Sair");
+            System.out.println("2. Consultar Cliente");
+            System.out.println("3. Deletar Cliente");
+            System.out.println("4. Atualizar Cliente");
+            System.out.println("Sair...");
             int escolha = leitor.nextInt();
             leitor.nextLine(); // Consumir a nova linha
 
@@ -56,7 +57,10 @@ public class FuncionarioView{
                     break;
 
                 case 5:
-                    return;
+                    System.out.println("Saind....."); //todo ajeitar isso 
+                    figas = true;
+                    break;
+                    
                     
                 default:
                     System.out.println("Opção inválida, tente novamente.");

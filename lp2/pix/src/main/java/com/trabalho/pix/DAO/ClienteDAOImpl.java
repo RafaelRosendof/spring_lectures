@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import com.trabalho.pix.Exception.DAOException;
 
 @Repository
 public class ClienteDAOImpl implements ClienteDAO{
@@ -32,13 +33,23 @@ public class ClienteDAOImpl implements ClienteDAO{
       return aQuery.getSingleResult();
    }
 
-
+/* 
    @Override
    @Transactional
    public ClienteEntity findByConta(String conta){
       return entityManager.find(ClienteEntity.class, conta);
    }
-
+*/
+    @Override
+    public ClienteEntity findByConta(String conta) {
+        try {
+            TypedQuery<ClienteEntity> query = entityManager.createQuery("FROM ClienteEntity WHERE conta = :conta", ClienteEntity.class);
+            query.setParameter("conta", conta);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new DAOException("Error finding account with account number: " + conta, e);
+        }
+    }
    @Override
    @Transactional
    public BigDecimal consultarSaldo(ClienteEntity cliente){
