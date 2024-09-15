@@ -34,6 +34,7 @@ public class EscolaApplication {
 				System.out.println("Digite (4) para Deletar um ou vários usuário");
 				System.out.println("Digite (5) para pesquisar por categoria sobrenome ou ID");
 				System.out.println("Digite q para sair");
+        
 
 				/*
 				 * TODO LIST
