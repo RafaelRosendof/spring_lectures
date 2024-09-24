@@ -37,26 +37,33 @@ public class ProdutoImplDAO implements CustomProdDAO{
 
     @Override
     @Transactional
-    public void CriarProduto(ProdutoEntity produto){
+    public ProdutoEntity CriarProduto(ProdutoEntity produto){
         em.persist(produto);
+
+        return produto;
     }
 
     @Override
     @Transactional
-    public void updatePrice(BigDecimal price , int id){
+    public ProdutoEntity updatePrice(BigDecimal price , int id){
         Query query = em.createQuery("UPDATE ProdutoEntity p SET p.price = :price WHERE p.id = :id");
         query.setParameter("price", price);
         query.setParameter("id", id);
         query.executeUpdate();
 
+        //return custom.findById(id).orElse(null);
+        return em.find(ProdutoEntity.class, id);
+        
     }
 
     @Override
     @Transactional
-    public void updateQuantidade(int quantidade , int id){
+    public ProdutoEntity updateQuantidade(int quantidade , int id){
         Query query = em.createQuery("UPDATE ProdutoEntity p SET p.quantidade = :quantidade WHERE id = :id");
         query.setParameter("quantidade", quantidade);
         query.setParameter("id", id);
         query.executeUpdate();
+
+        return em.find(ProdutoEntity.class, id);
     }
 }

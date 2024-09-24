@@ -13,8 +13,8 @@ public interface CustomProdDAO {
      */
 
     ProdutoEntity findByNome(String nome);
-    void CriarProduto(ProdutoEntity produto);
-    void updatePrice(BigDecimal price , int id);
-    void updateQuantidade(int value , int id);
+    ProdutoEntity CriarProduto(ProdutoEntity produto);
+    ProdutoEntity updatePrice(BigDecimal price , int id);
+    ProdutoEntity updateQuantidade(int value , int id);
     
 }

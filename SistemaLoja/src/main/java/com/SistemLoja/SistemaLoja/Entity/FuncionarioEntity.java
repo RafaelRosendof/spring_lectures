@@ -1,21 +1,23 @@
 package com.SistemLoja.SistemaLoja.Entity;
 
-
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-
-
 
 @Entity
 @Table(name = "Funcionario")
 
 public class FuncionarioEntity{
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +42,10 @@ public class FuncionarioEntity{
     @Column(name = "cargo")
     private String cargo;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Funcionario_Role" , joinColumns = @JoinColumn(name = "funcionario_id") , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles = new HashSet<>();
+
     public FuncionarioEntity(){}
 
     public FuncionarioEntity(int id ,String cargo, String nome , String cpf , String email  ,String login , String senha){
@@ -58,6 +64,14 @@ public class FuncionarioEntity{
     public void setId(int id){
         this.id = id;
     }
+
+    public void addRole(RoleEntity role){
+        this.roles.add(role);
+    }
+
+    public void removeRole(RoleEntity role){
+        this.roles.remove(role);
+    } 
 
     public String getCargo(){
         return cargo;
@@ -102,13 +116,6 @@ public class FuncionarioEntity{
     public void setSenha(String senha){
         this.senha = senha;
     }
-
-
-
-
-
-
-
 
     //toString
     @Override
