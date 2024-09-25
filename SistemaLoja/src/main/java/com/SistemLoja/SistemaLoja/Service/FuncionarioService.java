@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.SistemLoja.SistemaLoja.DAO.CustomFuncDAO;
+import java.util.List;
 
 /*
  * 
@@ -41,12 +42,17 @@ public class FuncionarioService{
         return customFuncDAO.findByCpf(cpf);
     }
 
-    public void CriarFuncionario(FuncionarioEntity funcionario){
+    public FuncionarioEntity CriarFuncionario(FuncionarioEntity funcionario){
         customFuncDAO.CriarFuncionario(funcionario);
+        return funcionario;
     }
 
-    public void updateFuncionario(FuncionarioEntity funcionario){
+    public FuncionarioEntity updateFuncionario(FuncionarioEntity funcionario){
         customFuncDAO.updateFuncionario(funcionario);
+        return funcionario;
+    }
 
+    public List<FuncionarioEntity> findAll(){
+        return funcionarioDAO.findAll();
     }
 }

@@ -13,7 +13,7 @@ public interface CustomFuncDAO {
 
     FuncionarioEntity findByCpf(String cpf); 
 
-    void CriarFuncionario(FuncionarioEntity funcionario);
+    FuncionarioEntity CriarFuncionario(FuncionarioEntity funcionario);
 
-    void updateFuncionario(FuncionarioEntity funcionario);
+    FuncionarioEntity updateFuncionario(FuncionarioEntity funcionario);
 }
