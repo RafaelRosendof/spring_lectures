@@ -41,14 +41,16 @@ public class ClienteImplDAO implements CustomDAOCliente{
 
     @Override
     @Transactional
-    public void updateCliente(ClienteEntity cliente){
+    public ClienteEntity updateCliente(ClienteEntity cliente){
         em.merge(cliente);
+        return cliente;
     }
 
     @Override
     @Transactional
-    public void CriarCliente(ClienteEntity cliente){
+    public ClienteEntity CriarCliente(ClienteEntity cliente){
         em.persist(cliente);
+        return cliente;
     }
 
     @Override 

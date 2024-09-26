@@ -1,6 +1,6 @@
 package com.SistemLoja.SistemaLoja.Service;
 
-
+import java.util.List;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -38,13 +38,15 @@ public class ClienteService{
     }
 
     @Transactional
-    public void updateCliente(ClienteEntity cliente){
+    public ClienteEntity updateCliente(ClienteEntity cliente){
         customDAOCliente.updateCliente(cliente);
+        return cliente;
     }
 
     @Transactional
-    public void CriarCliente(ClienteEntity cliente){
+    public ClienteEntity CriarCliente(ClienteEntity cliente){
         customDAOCliente.CriarCliente(cliente);
+        return cliente;
     }
 
     public ClienteEntity findConta(int id){
@@ -57,5 +59,9 @@ public class ClienteService{
 
     public BigDecimal findSaldo(int id){
         return customDAOCliente.findSaldo(id);
+    }
+
+    public List<ClienteEntity> findAll(){
+        return clienteDAO.findAll();
     }
 }

@@ -4,6 +4,7 @@ package com.SistemLoja.SistemaLoja.Rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.SistemLoja.SistemaLoja.Service.FuncionarioService;
 import com.SistemLoja.SistemaLoja.Entity.FuncionarioEntity;
+import org.springframework.web.bind.annotation.RequestParam;
+
+/*
+ * @Por enquanto ficamos somente assim
+ * Mas falta implementar quem sabe mais métodos 
+ *  
+ */
 
 @RestController
 @RequestMapping("/funcionario")
@@ -22,17 +30,6 @@ public class FuncionarioRestController {
     public FuncionarioRestController(FuncionarioService funcionarioService){
         this.funcionarioService = funcionarioService;
     }
-
-    //métodos a vontade agora 
-    /*
-     * exemplo de um 
-     *     @GetMapping("/employees")
-    public List<Employee> findAll() {
-        return employeeService.findAll();
-    }
-
-    lembrar de manipular isso no postman e usar o navegador para visualizar
-     */
 
      @GetMapping("/Listfuncionarios")
      public List<FuncionarioEntity> findAll(){
@@ -57,7 +54,32 @@ public class FuncionarioRestController {
         return funcionario;
     }
 
+    @PostMapping("/atualizarFuncionario")
+    public FuncionarioEntity updateFunc(@RequestBody FuncionarioEntity funcionario){
+        funcionarioService.updateFuncionario(funcionario);
+        return funcionario;
+    }
     
+    @DeleteMapping("/deletarFuncionario/{funcionarioId}")
+    public void deleteFunc(@RequestBody int funcionarioId){
 
+        FuncionarioEntity funcionario = funcionarioService.findById(funcionarioId);
 
+        if(funcionario == null){
+            throw new RuntimeException("Funcionario não encontrado - " + funcionarioId);
+        }
+
+        funcionarioService.deleteById(funcionarioId);
+    }
+
+    @GetMapping("/funcionarios/{cpf}")
+    public FuncionarioEntity getByCPF(@RequestParam String cpf){
+        FuncionarioEntity func = funcionarioService.findByCpf(cpf);
+
+        if(func == null){
+            throw new RuntimeException("Funcionario não encontrado - " + cpf);
+        }
+
+        return func;
+    }
 }

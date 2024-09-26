@@ -17,7 +17,7 @@ public interface CustomDAOCliente  {
 
     ClienteEntity findByCpf(String cpf);
     BigDecimal findSaldo(int id);
-    void updateCliente(ClienteEntity cliente);
-    void CriarCliente(ClienteEntity cliente);
+    ClienteEntity updateCliente(ClienteEntity cliente);
+    ClienteEntity CriarCliente(ClienteEntity cliente);
     ClienteEntity findConta(int id);
 }
