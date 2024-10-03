@@ -37,11 +37,13 @@ public class ProdutoRestController {
     update quantidade
     update nome
      */
+    //testado e funcionando
     @GetMapping("/ListarProdutos")
     public List<ProdutoEntity> findAll(){
         return produtoService.findAll();
     } 
 
+    //testado e funcionando 
     @GetMapping("/produtos/{produtoId}")
     public ProdutoEntity getProduto(@PathVariable int produtoId){
         ProdutoEntity produto = produtoService.findById(produtoId);
@@ -54,6 +56,7 @@ public class ProdutoRestController {
         return produto;
     }
 
+    //está funcionando perfeitamente
     @PostMapping("/adicionarProduto")
     public ProdutoEntity addProduto(@RequestBody ProdutoEntity produto){
         ProdutoEntity dbproduto = produtoService.CriarProduto(produto);
@@ -61,6 +64,7 @@ public class ProdutoRestController {
         return dbproduto;
     }
 
+    //funcionando, apenas colocar o valor tbm
     @PostMapping("/{id}/updatePrice")
     public ProdutoEntity updateProduto(@PathVariable int id , @RequestBody BigDecimal price){
        ProdutoEntity produto = produtoService.updatePrice(price , id);
@@ -73,6 +77,7 @@ public class ProdutoRestController {
 
     }
 
+        //funcionando apenas colocar o valor 
     @PostMapping("/{id}/updateQuantidade")
     public ProdutoEntity updateQuantidade(@PathVariable int id , @RequestBody int value){
         ProdutoEntity produto = produtoService.updateQuantidade(value , id);
@@ -95,3 +100,15 @@ public class ProdutoRestController {
         produtoService.deleteById(produtoId);
     }
 }
+
+/*
+ * {
+  "id": 1,
+  "nome": "Notebook",
+  "categoria": "Eletrônicos",
+  "price": 2500.00,
+  "quantidade": 10,
+  "marca": "Dell"
+}
+
+ */

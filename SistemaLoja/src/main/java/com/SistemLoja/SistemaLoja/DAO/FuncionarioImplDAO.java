@@ -31,7 +31,7 @@ public class FuncionarioImplDAO implements CustomFuncDAO{
     @Override
     @Transactional
     public FuncionarioEntity CriarFuncionario(FuncionarioEntity funcionario){
-        em.persist(funcionario);
+        em.merge(funcionario);
         return funcionario;
 
     }
