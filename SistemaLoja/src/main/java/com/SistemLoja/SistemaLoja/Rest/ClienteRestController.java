@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.apache.el.lang.ELArithmetic.BigDecimalDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,7 @@ public class ClienteRestController{
     }
 
     @DeleteMapping("/deletaCliente/{clienteId}")
-    public void deleteCliente(@RequestParam int clienteId){
+    public void deleteCliente(@PathVariable int clienteId){
         ClienteEntity cliente = clienteService.findById(clienteId);
 
         if(cliente == null){
@@ -41,7 +43,7 @@ public class ClienteRestController{
     }
 
     @GetMapping("/cliente/{clienteId}")
-    public ClienteEntity getCliente(@RequestParam int clienteId){
+    public ClienteEntity getCliente(@PathVariable int clienteId){
         ClienteEntity cliente = clienteService.findById(clienteId);
 
         if(cliente == null){
@@ -52,10 +54,16 @@ public class ClienteRestController{
 
     }
 
-    @PostMapping("/updateCliente")
-    public ClienteEntity updateCliente(@RequestParam ClienteEntity cliente){
-        clienteService.updateCliente(cliente);
-        return cliente;
+    @PostMapping("{id}/updateCliente")
+    public ClienteEntity updateCliente(@PathVariable int id ,  @RequestBody ClienteEntity cliente){
+        cliente.setId(id);
+
+        ClienteEntity updateCliente = clienteService.updateCliente(cliente);
+
+        if(updateCliente == null){
+            throw new RuntimeException("Cliente não encontrado - " + id);
+        }
+        return updateCliente;
     }
 
     @PostMapping("/adicionarCliente")
@@ -64,9 +72,14 @@ public class ClienteRestController{
         return cliente;
     }
 
-   @GetMapping("/findSaldo")
-   public BigDecimal findSaldo(@RequestParam int id){
-       return clienteService.findSaldo(id);
+   @GetMapping("{id}/findSaldo")
+   public BigDecimal findSaldo(@PathVariable int id){
+    BigDecimal saldo = clienteService.findSaldo(id);
+
+    if(saldo == null){
+        throw new RuntimeException("Cliente não encontrado - " + id);
+    }
+    return saldo;
    } 
     
 
