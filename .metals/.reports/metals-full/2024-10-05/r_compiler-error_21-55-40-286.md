@@ -1,0 +1,76 @@
+file://<WORKSPACE>/MVCfigas/src/main/java/com/MVCE/figas/controller/HelloWorldController.java
+### java.util.NoSuchElementException: next on empty iterator
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+Scala version: 3.3.3
+Classpath:
+<HOME>/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.3.3/scala3-library_3-3.3.3.jar [exists ], <HOME>/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.12/scala-library-2.13.12.jar [exists ]
+Options:
+
+
+
+action parameters:
+offset: 389
+uri: file://<WORKSPACE>/MVCfigas/src/main/java/com/MVCE/figas/controller/HelloWorldController.java
+text:
+```scala
+package main.java.com.MVCE.figas.controller;
+
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.lang.annotation.Repeatable;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HelloWorldController{
+    @RequestMapping("/showForm")
+    public String sho@@wForm(){
+        return "helloworld-form";
+    }
+
+    //precisa de um método controller para processar o formulário
+    @RequestMapping("/processForm")
+    public String processForm(){
+        return "helloworld";
+    }
+
+    @RequestMapping("/processFormVersionTwo")
+    public String letsShoutDude(HttpServletRequest request , Model model){
+        String theName = request.getParameter("studentName");
+
+        theName = theName.toUpperCase();
+
+        String result = "Yo! " + theName;
+
+        model.addAttribute("message" , result);
+        
+        return "helloworld"; 
+    }
+}
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	scala.collection.IterableOps.head(Iterable.scala:222)
+	scala.collection.IterableOps.head$(Iterable.scala:222)
+	scala.collection.AbstractIterable.head(Iterable.scala:933)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:168)
+	scala.meta.internal.pc.MetalsDriver.run(MetalsDriver.scala:45)
+	scala.meta.internal.pc.HoverProvider$.hover(HoverProvider.scala:36)
+	scala.meta.internal.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:389)
+```
+#### Short summary: 
+
+java.util.NoSuchElementException: next on empty iterator
