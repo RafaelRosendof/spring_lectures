@@ -39,6 +39,10 @@ public class ClienteService{
 
     @Transactional
     public ClienteEntity updateCliente(ClienteEntity cliente){
+        ClienteEntity clienteEntity = clienteDAO.findById(cliente.getId()).orElse(null);
+        if(clienteEntity == null){
+            return null;
+        }
         customDAOCliente.updateCliente(cliente);
         return cliente;
     }
