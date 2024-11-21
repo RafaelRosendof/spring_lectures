@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.math.BigDecimal;
 
@@ -65,8 +66,8 @@ public class ProdutoRestController {
     }
 
     //funcionando, apenas colocar o valor tbm
-    @PostMapping("/{id}/updatePrice")
-    public ProdutoEntity updateProduto(@PathVariable int id , @RequestBody BigDecimal price){
+    @PutMapping("/{id}/updatePrice")
+    public ProdutoEntity updatePrice(@PathVariable int id , @RequestBody BigDecimal price){
        ProdutoEntity produto = produtoService.updatePrice(price , id);
 
        if(produto == null){
@@ -77,8 +78,9 @@ public class ProdutoRestController {
 
     }
 
+
         //funcionando apenas colocar o valor 
-    @PostMapping("/{id}/updateQuantidade")
+    @PutMapping("/{id}/updateQuantidade")
     public ProdutoEntity updateQuantidade(@PathVariable int id , @RequestBody int value){
         ProdutoEntity produto = produtoService.updateQuantidade(value , id);
 

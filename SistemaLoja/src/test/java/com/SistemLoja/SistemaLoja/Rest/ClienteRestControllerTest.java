@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -114,22 +115,7 @@ public class ClienteRestControllerTest{
         when(clienteService.findById(cliente1.getId())).thenReturn(cliente1);
         when(clienteService.updateCliente(any(ClienteEntity.class))).thenReturn(novoCliente1);
 
-        /* 
-    mockMvc.perform(put("/cliente/{id}/updateCliente", cliente1.getId())
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"nome\": \"" + "Figas" + "\", \"cpf\": \"7021666450\", \"email\": \"rafinha.galego73@gmail.com\", \"telefone\": \"84988278927\", \"login\": \"rafael\", \"senha\": \"rafael123\", \"saldo\": 1250}"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.id").value(cliente1.getId()))
-            .andExpect(jsonPath("$.nome").value("Figas"))
-            .andExpect(jsonPath("$.cpf").value(cliente1.getCPF()))
-            .andExpect(jsonPath("$.email").value(cliente1.getEmail()))
-            .andExpect(jsonPath("$.telefone").value(cliente1.getTelefone()))
-            .andExpect(jsonPath("$.login").value(cliente1.getLogin()))
-            .andExpect(jsonPath("$.senha").value(cliente1.getSenha()))
-            .andExpect(jsonPath("$.saldo").value(cliente1.getSaldo()));
 
-    verify(clienteService, times(1)).updateCliente(novoCliente1);
-*/
         mockMvc.perform(put("/cliente/{id}/updateCliente", cliente1.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(novoCliente1)))
@@ -168,51 +154,16 @@ public class ClienteRestControllerTest{
 
             verify(clienteService , times(1)).CriarCliente(any(ClienteEntity.class));
     }
-    /* TODO
-     * Teste de update (dando erro no post)
-     * teste de adicionar 
-     * teste de find saldo 
-     */
-
-
-/* 
-
-    @Mock
-    private ClienteService clienteService;
-
-    @InjectMocks
-    private ClienteRestController clienteRestController;
-
-    @BeforeEach
-    void setUp(){
-        clienteRestController = new ClienteRestController(clienteService);
-    }
 
     @Test
-    void testFindAll(){
-        ClienteEntity cliente1 = new ClienteEntity();
-        ClienteEntity cliente2 = new ClienteEntity();
-        ClienteEntity cliente3 = new ClienteEntity();
+    public void testFindSaldo() throws Exception{
+        ClienteEntity c1 = new ClienteEntity(0 , "Rafael" , "7021666450", "rafinha.galego73@gmail.com" , "84988278927" , "rafael", "rafael123", BigDecimal.valueOf(1250.0));
 
-        cliente1.setId(1);
-        cliente2.setId(2);
-        cliente3.setId(3);
+        when(clienteService.findSaldo(c1.getId())).thenReturn(c1.getSaldo());
 
 
-        cliente1.setNome("Rinaldo");
-        cliente2.setNome("Firuza");
-        cliente3.setNome("Figao");
-
-        List<ClienteEntity> clientes =  Arrays.asList(cliente1, cliente2, cliente3);
-
-        when(clienteService.findAll()).thenReturn(clientes);
-
-        List<ClienteEntity> result = clienteRestController.findAll();
-
-        assertEquals(3 , result.size());
-
-        assertEquals("Rinaldo", result.get(0).getNome());
-
+    mockMvc.perform(get("/cliente/{id}/findSaldo", c1.getId()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.Saldo").value(c1.getSaldo()));
     }
-        */
 } 
