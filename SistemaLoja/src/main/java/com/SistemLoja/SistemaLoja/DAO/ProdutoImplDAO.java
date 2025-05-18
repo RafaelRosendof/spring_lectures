@@ -39,8 +39,6 @@ public class ProdutoImplDAO implements CustomProdDAO{
     @Transactional
     public ProdutoEntity CriarProduto(ProdutoEntity produto){
         em.merge(produto); 
-        //com o persist deu erro, melhor evitar por enquanto 
-
         return produto;
     }
 

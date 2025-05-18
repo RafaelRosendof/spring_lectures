@@ -16,9 +16,11 @@ import jakarta.persistence.Table;
 
 public class ClienteEntity{
 
-
+//@GeneratedValue(strategy = IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
