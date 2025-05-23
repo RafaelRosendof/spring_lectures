@@ -73,6 +73,9 @@ public class ClienteRestController{
     @PostMapping("/adicionarCliente")
     public ClienteEntity addCliente(@RequestBody ClienteEntity cliente){
         clienteService.CriarCliente(cliente);
+        //add the mail send here 
+        clienteService.SendEmail(cliente.getId());
+
         return cliente;
     }
 

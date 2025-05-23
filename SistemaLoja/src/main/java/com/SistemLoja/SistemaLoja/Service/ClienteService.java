@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.SistemLoja.SistemaLoja.Aux.EmailService;
 import com.SistemLoja.SistemaLoja.DAO.ClienteDAO;
 import com.SistemLoja.SistemaLoja.Entity.ClienteEntity;
 
@@ -19,14 +20,15 @@ import com.SistemLoja.SistemaLoja.DAO.CustomDAOCliente;
 public class ClienteService{
     private final ClienteDAO clienteDAO;
     private final CustomDAOCliente customDAOCliente;
+    private final EmailService emailService;
 
     @Autowired
-    public ClienteService(ClienteDAO clienteDAO, CustomDAOCliente customDAOCliente){
+    public ClienteService(ClienteDAO clienteDAO, CustomDAOCliente customDAOCliente , EmailService emailService){
         this.clienteDAO = clienteDAO;
         this.customDAOCliente = customDAOCliente;
+        this.emailService = emailService;
     }
 
-    //TODO
 
     public ClienteEntity findById(int id){
         Optional<ClienteEntity> cliente = clienteDAO.findById(id);
@@ -63,6 +65,13 @@ public class ClienteService{
 
     public BigDecimal findSaldo(int id){
         return customDAOCliente.findSaldo(id);
+    }
+
+    public boolean SendEmail(int id){
+        // find email and return in the function sendEmail()
+        String email = customDAOCliente.findEmail(id);
+        return emailService.sendEmail(email);
+        
     }
 
     public List<ClienteEntity> findAll(){

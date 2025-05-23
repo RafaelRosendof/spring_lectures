@@ -34,9 +34,16 @@ public class ClienteImplDAO implements CustomDAOCliente{
     @Override
     public BigDecimal findSaldo(int id){
         TypedQuery<BigDecimal> query = em.createQuery("SELECT f.saldo FROM ClienteEntity f WHERE f.id = :id", BigDecimal.class);
-        query.setParameter("id", id); //Verificar se é isso mesmo TODO
+        query.setParameter("id", id); 
         return query.getSingleResult();
 
+    }
+
+    @Override
+    public String findEmail(int id){
+        TypedQuery<String> query = em.createQuery("SELECT f.email FROM ClienteEntity f WHERE f.id = :id" , String.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 
     @Override
@@ -56,7 +63,7 @@ public class ClienteImplDAO implements CustomDAOCliente{
     @Override 
     public ClienteEntity findConta(int id){
         TypedQuery<ClienteEntity> query = em.createQuery("SELECT f FROM ClienteEntity f WHERE f.id = :id", ClienteEntity.class);
-        query.setParameter("id", id); //TODO verificar se é isso mesmo
+        query.setParameter("id", id); 
         return query.getSingleResult();
     }
 

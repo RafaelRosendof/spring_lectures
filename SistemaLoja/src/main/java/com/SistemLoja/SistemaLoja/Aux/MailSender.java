@@ -12,17 +12,21 @@ public  class MailSender implements EmailService  {
     @Autowired
     private JavaMailSender mailSender; 
 
-    public boolean sendEmail(String to , String subject , String body){
+    public boolean sendEmail(String to){
 
         String template = """
-                Olá, o senhor está recebendo este email porque o senhor se cadastrou no sistema de loja.
+                Olá, o senhor está recebendo este email, devido ao cadastro na nossa empresa de credito.
                 O seu email é: %s
                 O seu assunto é: %s
 
                 Caso tenha alguma dúvida, entre em contato com o suporte.
                 Atenciosamente,
                 Equipe de Suporte
+                ps: não tente me encontrar 
                 """;
+
+        String subject = "cadastro do cliente";
+        String body = "Cadastro do cliente para o figas";
 
         try {
 

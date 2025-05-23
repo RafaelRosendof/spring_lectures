@@ -4,12 +4,15 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 
 @Component
 public class JwtUtil {
 
     
-    private final String secreta = "FalaFigas";
+    //private final String secreta = "FalaFigas";
+    private final Key secreta = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public String generateToken(String username) {
         

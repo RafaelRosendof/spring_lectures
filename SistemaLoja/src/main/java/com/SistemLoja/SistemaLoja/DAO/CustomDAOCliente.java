@@ -20,4 +20,5 @@ public interface CustomDAOCliente  {
     ClienteEntity updateCliente(ClienteEntity cliente);
     ClienteEntity CriarCliente(ClienteEntity cliente);
     ClienteEntity findConta(int id);
+    String findEmail(int id);
 }
