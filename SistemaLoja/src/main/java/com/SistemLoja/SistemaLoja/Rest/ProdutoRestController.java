@@ -39,13 +39,13 @@ public class ProdutoRestController {
     update nome
      */
     //testado e funcionando
-    @GetMapping("/ListarProdutos")
+    @GetMapping("/public/ListarProdutos")
     public List<ProdutoEntity> findAll(){
         return produtoService.findAll();
     } 
 
     //testado e funcionando 
-    @GetMapping("/produtos/{produtoId}")
+    @GetMapping("/public/produtos/{produtoId}")
     public ProdutoEntity getProduto(@PathVariable int produtoId){
         ProdutoEntity produto = produtoService.findById(produtoId);
 

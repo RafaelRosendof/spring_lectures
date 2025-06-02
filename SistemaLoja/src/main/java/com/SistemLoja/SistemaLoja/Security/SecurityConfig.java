@@ -34,33 +34,40 @@ public class SecurityConfig {
 
 filter the requests, and not limit all the endpoints maybe we want the jwt only for the risk actions 
 
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-        .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(auth -> {
-            auth
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/api/public/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
-                // Add other public GET endpoints here
-                .anyRequest().authenticated();
-        })
-        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    @Bean 
+    public SecurityFilterChain securityFilterChainClient (HttpSecurity http) throws Exception {
 
-    http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-    return http.build();
+        http 
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests( auth -> {
+                auth
+                .requestMatchers("/login").permitAll()
+                .requestMatchers("/cliente/public/**").permitAll()
+                .anyRequest().authenticated();
+            })
+
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
 }
  */
+
+    //for the client config
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/login").permitAll()
-                    .anyRequest().authenticated();
+                auth
+                .requestMatchers("/login").permitAll()
+                .requestMatchers("/cliente/public/**").permitAll()
+                .requestMatchers("/funcionarios/public/**").permitAll()
+                .requestMatchers("produto/public/**").permitAll()
+                .anyRequest().authenticated();
             })
             .sessionManagement(session -> 
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

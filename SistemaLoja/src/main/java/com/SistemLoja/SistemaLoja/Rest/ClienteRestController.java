@@ -41,7 +41,7 @@ public class ClienteRestController{
         clienteService.deleteById(clienteId);
     }
 
-    @GetMapping("/ListClientes")
+    @GetMapping("/public/ListClientes")
     public List<ClienteEntity> findAll(){
         return clienteService.findAll();
     }
